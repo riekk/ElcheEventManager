@@ -29,7 +29,8 @@
             </div>
         </div>
     </nav>
-    <div class="container body-content">
+    @*Explicit compare if are true, else false or null*@
+    <div class="container body-content @(ViewBag.IsMapView == true ? "fullscreen-map" : "")">
         @RenderBody()
         <hr />
         <footer>
@@ -37,8 +38,8 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
 </body>
 </html>

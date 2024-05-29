@@ -152,6 +152,7 @@ namespace ElcheEventManager.Controllers
 
         public ActionResult IntersectionsMap(int? id)
         {
+            ViewBag.IsMapView = true;
             //var intersecciones = db.Intersections.Where(i => i.event_id == id);
             //return View(intersecciones.ToList());
 

@@ -16,7 +16,7 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    max-width: 320px;
 }
 
 .modal-body-centered {
@@ -25,20 +25,25 @@ textarea {
     align-items: center;
 }
 
-/* Icono de Excel */
-.icon-excel::before {
-    content: "\f1c3"; /* Código Unicode para el icono de Excel */
-    font-family: "Font Awesome 6 Free";
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
-/* Icono de PDF */
-.icon-pdf::before {
-    content: "\f1c1"; /* Código Unicode para el icono de PDF */
-    font-family: "Font Awesome 6 Free";
+/* Ensure the container takes the full viewport height only when rendering the map */
+.container.body-content.fullscreen-map {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    position: relative;
 }
 
-/* Icono de impresión */
-.icon-print::before {
-    content: "\f02f"; /* Código Unicode para el icono de impresión */
-    font-family: "Font Awesome 6 Free";
+#map {
+    width: 100vw;
+    height: 90vh;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
