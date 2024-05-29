@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.WebPages;
 using ElcheEventManager.Models.db;
 
 namespace ElcheEventManager.Controllers
@@ -192,6 +193,7 @@ namespace ElcheEventManager.Controllers
             //     Quantity = i.quantity
             // })
             ViewBag.eventId = id;
+            ViewBag.Title = "Listado de " + db.Events.Where(e => e.id == id).Select(e => e.name).FirstOrDefault();
             return View(intersections);
         }      
 

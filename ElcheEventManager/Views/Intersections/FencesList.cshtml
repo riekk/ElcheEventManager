@@ -1,10 +1,15 @@
 ﻿<head>
-    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+    <!-- DataTables Buttons CSS -->
+    @*<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css">*@
 </head>
+
 <h2>Listado de vallas</h2>
 
 @{
-    ViewBag.Title = "Lista de Intersecciones";
+    
 }
 
 <div class="container">
@@ -32,9 +37,16 @@
     <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/plug-ins/1.10.21/sorting/datetime-moment.js"></script>
-    @*<script src="https://kit.fontawesome.com/36d2ad68b2.js" crossorigin="anonymous"></script>*@
 
-    <script>
+    <script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.print.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+
+
+<script>
         var eventId = '@ViewBag.eventId';
         console.log(eventId);
 
@@ -45,43 +57,57 @@
                     dataSrc: 'intersections'
                 },
                 columns: [
-                    { data: 'id', visible: false }, 
+                    { data: 'id', visible: false },
                     { data: 'position', orderable: true, searchable: false, defaultContent: '' },
-                    { data: 'primary_street' },
-                    { data: 'secondary_street' },
-                    { data: 'quantity' }
+                    { data: 'primary_street', orderable: true },
+                    { data: 'secondary_street', orderable: true },
+                    { data: 'quantity', orderable: true }
                 ],
-                order: [[1, 'asc']], 
+                order: [[1, 'asc']],
+                dom: 'Bfrtip',
                 buttons: [
                     {
                         extend: 'excelHtml5',
                         text: '<i class="fas fa-file-excel"></i>',
                         titleAttr: 'Exportar a Excel',
-                        className: 'btn btn-success'
+                        className: 'btn btn-outline-success',
+                        filename: 'Listado de Vallas',
+                        exportOptions: {
+                            columns: [1, 2, 3, 4]
+                        }
                     },
                     {
                         extend: 'pdfHtml5',
                         text: '<i class="fas fa-file-pdf"></i>',
                         titleAttr: 'Exportar a PDF',
-                        className: 'btn btn-danger'
+                        className: 'btn btn-outline-danger',
+                        filename: 'Listado de Vallas',
+                        title: '@ViewBag.Title',
+                        exportOptions: {
+                            columns: [1, 2, 3, 4]
+                        }
                     },
                     {
                         extend: 'print',
                         text: '<i class="fas fa-print"></i>',
                         titleAttr: 'Imprimir',
-                        className: 'btn btn-info'
+                        className: 'btn btn-outline-info',
+                        title: '@ViewBag.Title',
+                        exportOptions: {
+                            columns: [1, 2, 3, 4]
+                        }
                     }
                 ]
             });
 
-            
+
             table.on('order.dt', function () {
                 table.column(1, { order: 'applied' }).nodes().each(function (cell, i) {
                     cell.innerHTML = i + 1;
                 });
             }).draw();
 
-            
+
             $('#fencesTable tbody').sortable({
                 axis: 'y',
                 cursor: 'move',
@@ -99,7 +125,7 @@
                         url: '/Intersections/UpdateOrder',
                         type: 'POST',
                         contentType: 'application/json',
-                        data: JSON.stringify({ eventId: parseInt(eventId), ids: rowsData }), 
+                        data: JSON.stringify({ eventId: parseInt(eventId), ids: rowsData }),
                         success: function (response) {
                             console.log("Orden actualizado:", response);
                             table.ajax.reload();
@@ -111,8 +137,8 @@
                 }
             }).disableSelection();
         });
-        
 
-    </script>
+
+</script>
 
 }

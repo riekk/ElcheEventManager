@@ -3,8 +3,10 @@
 @{
     ViewBag.Title = "Lista Eventos";
 }
-
-<link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet" />
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet" />
+</head>
 
 <h2>Listado de eventos</h2>
 <p>
@@ -38,7 +40,7 @@
     <script src="https://cdn.datatables.net/plug-ins/1.10.21/sorting/datetime-moment.js"></script>
 
     <script type="text/javascript">
-        $(document).ready(function () {          
+        $(document).ready(function () {
 
             $('#eventsTable').DataTable({
                 "ajax": {
@@ -61,11 +63,26 @@
                         "data": "id",
                         "render": function (data, type, row) {
                             return `
-                                <a href='@Url.Action("Edit", "Events")/${data}' class='btn btn-outline-primary'>Editar</a>
-                                <a href='@Url.Action("Details", "Events")/${data}' class='btn btn-outline-info'>Detalles</a>
-                                <a href='@Url.Action("Delete", "Events")/${data}' class='btn btn-outline-danger'>Eliminar</a>
-                                <a href='@Url.Action("IntersectionsMap", "Intersections")/${data}' class='btn btn-outline-success'>Mapa</a>
-                                <a href='@Url.Action("FencesList", "Intersections")/${data}' class='btn btn-outline-success'>Lista de vallas</a>
+                                <a href='@Url.Action("Edit", "Events")/${data}' class='btn btn-outline-primary'>
+                                    <i class="far fa-pen-to-square"></i>
+                                    <span class="d-none d-sm-inline">Editar</span>
+                                </a>                                
+                                <a href='@Url.Action("Details", "Events")/${data}' class='btn btn-outline-info'>
+                                    <i class="fa-solid fa-circle-info"></i>
+                                    <span class="d-none d-sm-inline">Detalles</span>
+                                </a>
+                                <a href='@Url.Action("Delete", "Events")/${data}' class='btn btn-outline-danger'>
+                                    <i class="fa-solid fa-trash"></i>
+                                    <span class="d-none d-sm-inline">Eliminar</span>
+                                </a>
+                                <a href='@Url.Action("IntersectionsMap", "Intersections")/${data}' class='btn btn-outline-success'>
+                                    <i class="fa-regular fa-map"></i>
+                                    <span class="d-none d-sm-inline">Mapa</span>
+                                </a>
+                                <a href='@Url.Action("FencesList", "Intersections")/${data}' class='btn btn-outline-secondary'>
+                                    <i class="fa-solid fa-list"></i>
+                                    <span class="d-none d-sm-inline">Lista de vallas</span>
+                                </a>
                             `;
                         }
                     }
