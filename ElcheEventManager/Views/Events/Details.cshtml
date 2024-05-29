@@ -1,0 +1,90 @@
+﻿@model ElcheEventManager.Models.db.Event
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Event</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.start_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.start_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.end_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.end_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.manager_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.manager_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.manager_phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.manager_phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.manager_email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.manager_email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status.name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

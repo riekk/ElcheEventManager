@@ -1,0 +1,84 @@
+﻿@model IEnumerable<ElcheEventManager.Models.db.Event>
+
+@{
+    ViewBag.Title = "Lista Eventos";
+}
+
+<link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+<h2>Listado de eventos</h2>
+<p>
+    @Html.ActionLink("Nuevo evento", "Create", null, new { @class = "btn btn-success" })
+</p>
+
+<div class="container">
+    <div class="row">
+        <div class="table-responsive">
+            <table id="eventsTable" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Fecha de inicio</th>
+                        <th>Estado</th>
+                        <th>Categoría</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.10.21/sorting/datetime-moment.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {          
+
+            $('#eventsTable').DataTable({
+                "ajax": {
+                    "url": '@Url.Action("GetEvents")',
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "name" },
+                    {
+                        "data": "start_date",
+                        type: "datetime",
+                        "render": function (data) {
+                            return moment(data, 'MM/DD/YYYY HH:mm').format('DD/MM/YYYY HH:mm');
+                        }
+                    },
+                    { "data": "status_name" },
+                    { "data": "category_name" },
+                    {
+                        "data": "id",
+                        "render": function (data, type, row) {
+                            return `
+                                <a href='@Url.Action("Edit", "Events")/${data}' class='btn btn-outline-primary'>Editar</a>
+                                <a href='@Url.Action("Details", "Events")/${data}' class='btn btn-outline-info'>Detalles</a>
+                                <a href='@Url.Action("Delete", "Events")/${data}' class='btn btn-outline-danger'>Eliminar</a>
+                                <a href='@Url.Action("IntersectionsMap", "Intersections")/${data}' class='btn btn-outline-success'>Mapa</a>
+                                <a href='@Url.Action("FencesList", "Intersections")/${data}' class='btn btn-outline-success'>Lista de vallas</a>
+                            `;
+                        }
+                    }
+                ],
+                "columnDefs": [
+                    { "type": "date-eu", "targets": 1 } // Tratar la columna 1 (start_date) como una fecha con el formato 'DD/MM/YYYY'
+                ],
+                "order": [[1, "desc"]]
+            });
+
+        });
+    </script>
+
+
+}
+

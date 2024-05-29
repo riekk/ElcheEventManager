@@ -1,0 +1,115 @@
+﻿<head>
+    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">*@
+</head>
+<h2>Listado de vallas</h2>
+
+@{
+    ViewBag.Title = "Lista de Intersecciones";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="table-responsive">
+            <table id="fencesTable" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>#</th>
+                        <th>Calle principal</th>
+                        <th>Calle secundaria</th>
+                        <th>Cantidad</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.10.21/sorting/datetime-moment.js"></script>
+    @*<script src="https://kit.fontawesome.com/36d2ad68b2.js" crossorigin="anonymous"></script>*@
+
+    <script>
+        var eventId = '@ViewBag.eventId';
+        console.log(eventId);
+
+        $(document).ready(function () {
+            var table = $('#fencesTable').DataTable({
+                ajax: {
+                    url: `/Intersections/GetIntersections/${eventId}`,
+                    dataSrc: 'intersections'
+                },
+                columns: [
+                    { data: 'id', visible: false }, // Ocultar la columna de ID, pero mantener el dato accesible
+                    { data: null, orderable: true, searchable: false },
+                    { data: 'primary_street' },
+                    { data: 'secondary_street' },
+                    { data: 'quantity' }
+                ],
+                buttons: [
+                    {
+                        extend: 'excelHtml5',
+                        text: '<i class="fas fa-file-excel"></i>',
+                        titleAttr: 'Exportar a Excel',
+                        className: 'btn btn-success'
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        text: '<i class="fas fa-file-pdf"></i>',
+                        titleAttr: 'Exportar a PDF',
+                        className: 'btn btn-danger'
+                    },
+                    {
+                        extend: 'print',
+                        text: '<i class="fas fa-print"></i>',
+                        titleAttr: 'Imprimir',
+                        className: 'btn btn-info'
+                    }
+                ]
+            });
+
+            // Agregar números a la primera columna
+            table.on('order.dt', function () {
+                table.column(1, { order: 'applied' }).nodes().each(function (cell, i) {
+                    cell.innerHTML = i + 1;
+                });
+            }).draw();
+
+            // Inicializar DataTables con la funcionalidad de arrastrar y soltar filas
+            $('#fencesTable tbody').sortable({
+                axis: 'y',
+                cursor: 'move',
+                update: function (event, ui) {
+                    var reorderedRows = $(this).children();
+                    var rowsData = [];
+                    reorderedRows.each(function () {
+                        var rowData = table.row(this).data();
+                        rowsData.push({
+                            Id: rowData.id, // Captura el ID de la fila oculta
+                            NewOrder: $(this).index() + 1
+                        });
+                    });
+                    $.ajax({
+                        url: '/Intersections/UpdateOrder',
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify({ eventId: parseInt(eventId), ids: rowsData }), // Utiliza la variable eventId
+                        success: function (response) {
+                            console.log("Orden actualizado:", response);
+                        },
+                        error: function (xhr, status, error) {
+                            console.error("Error al actualizar el orden:", error);
+                        }
+                    });
+                }
+            }).disableSelection();
+        });
+
+    </script>
+
+}

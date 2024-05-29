@@ -1,0 +1,103 @@
+﻿@model ElcheEventManager.Models.db.Intersection
+
+<div class="modal" id="editIntersectionModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            @*<div class="modal-header">
+            <h3 class="modal-title" id="modalTitle"></h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>*@
+            <div class="modal-body d-flex justify-content-center align-items-center">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.id)
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.primary_street, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(model => model.primary_street, (IEnumerable<SelectListItem>)ViewBag.Streets, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.primary_street, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.secondary_street, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(model => model.secondary_street, (IEnumerable<SelectListItem>)ViewBag.Streets, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.secondary_street, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.quantity, new { @class = "form-control", type = "number", min = "0", required = "required", value = Model.quantity })
+                                @*@Html.EditorFor(model => model.quantity, new { htmlAttributes = new { @class = "form-control" } })*@
+                                @Html.ValidationMessageFor(model => model.quantity, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="display: none;">
+                            @Html.LabelFor(model => model.latitude, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.latitude, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.latitude, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="display: none;">
+                            @Html.LabelFor(model => model.longitude, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.longitude, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.longitude, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.material_id, "material_id", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("material_id", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.material_id, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="display: none;">
+                            @Html.LabelFor(model => model.event_id, "event_id", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.event_id, new { htmlAttributes = new { @class = "form-control" } })
+                                @*@Html.DropDownList("event_id", null, htmlAttributes: new { @class = "form-control" })*@
+                                @Html.ValidationMessageFor(model => model.event_id, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group mt-4">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Guardar" class="btn btn-outline-success" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                    @Scripts.Render("~/bundles/jquery")
+                    @Scripts.Render("~/bundles/bootstrap")
+                    @Scripts.Render("~/bundles/jqueryval")
+                }
+            </div>
+            @*<div class="modal-footer">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Guardar" class="btn btn-outline-success" />
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar sin guardar</button>
+                </div>
+            </div>*@
+        </div>
+    </div>
+</div>
+
+

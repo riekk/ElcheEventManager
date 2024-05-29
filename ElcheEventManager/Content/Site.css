@@ -1,0 +1,44 @@
+﻿/* Set padding to keep content from hitting the edges */
+.body-content {
+    margin-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.modal-body-centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Icono de Excel */
+.icon-excel::before {
+    content: "\f1c3"; /* Código Unicode para el icono de Excel */
+    font-family: "Font Awesome 6 Free";
+}
+
+/* Icono de PDF */
+.icon-pdf::before {
+    content: "\f1c1"; /* Código Unicode para el icono de PDF */
+    font-family: "Font Awesome 6 Free";
+}
+
+/* Icono de impresión */
+.icon-print::before {
+    content: "\f02f"; /* Código Unicode para el icono de impresión */
+    font-family: "Font Awesome 6 Free";
+}
