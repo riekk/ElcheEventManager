@@ -45,12 +45,13 @@
                     dataSrc: 'intersections'
                 },
                 columns: [
-                    { data: 'id', visible: false }, // Ocultar la columna de ID, pero mantener el dato accesible
-                    { data: null, orderable: true, searchable: false },
+                    { data: 'id', visible: false }, 
+                    { data: 'position', orderable: true, searchable: false, defaultContent: '' },
                     { data: 'primary_street' },
                     { data: 'secondary_street' },
                     { data: 'quantity' }
                 ],
+                order: [[1, 'asc']], 
                 buttons: [
                     {
                         extend: 'excelHtml5',
@@ -73,14 +74,14 @@
                 ]
             });
 
-            // Agregar números a la primera columna
+            
             table.on('order.dt', function () {
                 table.column(1, { order: 'applied' }).nodes().each(function (cell, i) {
                     cell.innerHTML = i + 1;
                 });
             }).draw();
 
-            // Inicializar DataTables con la funcionalidad de arrastrar y soltar filas
+            
             $('#fencesTable tbody').sortable({
                 axis: 'y',
                 cursor: 'move',
@@ -90,7 +91,7 @@
                     reorderedRows.each(function () {
                         var rowData = table.row(this).data();
                         rowsData.push({
-                            Id: rowData.id, // Captura el ID de la fila oculta
+                            Id: rowData.id,
                             NewOrder: $(this).index() + 1
                         });
                     });
@@ -98,9 +99,10 @@
                         url: '/Intersections/UpdateOrder',
                         type: 'POST',
                         contentType: 'application/json',
-                        data: JSON.stringify({ eventId: parseInt(eventId), ids: rowsData }), // Utiliza la variable eventId
+                        data: JSON.stringify({ eventId: parseInt(eventId), ids: rowsData }), 
                         success: function (response) {
                             console.log("Orden actualizado:", response);
+                            table.ajax.reload();
                         },
                         error: function (xhr, status, error) {
                             console.error("Error al actualizar el orden:", error);
@@ -109,6 +111,7 @@
                 }
             }).disableSelection();
         });
+        
 
     </script>
 

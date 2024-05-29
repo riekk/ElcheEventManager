@@ -193,29 +193,25 @@ namespace ElcheEventManager.Controllers
             // })
             ViewBag.eventId = id;
             return View(intersections);
-        }
+        }      
 
         [HttpPost]
         public ActionResult UpdateOrder(int eventId, List<RowData> ids)
         {
-            // Obtén todas las intersecciones para el evento específico (eventId)
+            
             var intersections = db.Intersections.Where(i => i.event_id == eventId).ToList();
 
-            // Recorre la lista de IDs y sus nuevos órdenes
             foreach (var item in ids)
-            {
-                // Busca la intersección por su ID
+            {                
                 var intersection = intersections.FirstOrDefault(i => i.id == item.Id);
                 if (intersection != null)
                 {
-                    // Actualiza el ID de la intersección
-                    intersection.id = item.NewId;
+                    intersection.position = item.NewOrder;
                 }
             }
 
-            // Guarda los cambios en la base de datos
             db.SaveChanges();
-            return Json("OK");
+            return Json("Ok");
         }
 
     }
@@ -224,6 +220,5 @@ namespace ElcheEventManager.Controllers
 public class RowData
 {
     public int Id { get; set; }
-    public int NewId { get; set; }
     public int NewOrder { get; set; }
 }

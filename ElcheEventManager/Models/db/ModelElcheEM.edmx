@@ -39,6 +39,7 @@
           <Property Name="longitude" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="material_id" Type="int" Nullable="false" />
           <Property Name="event_id" Type="int" Nullable="false" />
+          <Property Name="position" Type="int" />
         </EntityType>
         <EntityType Name="Material">
           <Key>
@@ -171,6 +172,7 @@
           <Property Name="event_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Event" Relationship="Self.FK_intersection_event" FromRole="Intersection" ToRole="Event" />
           <NavigationProperty Name="Material" Relationship="Self.FK_intersection_material" FromRole="Intersection" ToRole="Material" />
+          <Property Name="position" Type="Int32" />
         </EntityType>
         <EntityType Name="Material">
           <Key>
@@ -294,6 +296,7 @@
           <EntitySetMapping Name="Intersections">
             <EntityTypeMapping TypeName="ModelEM.Intersection">
               <MappingFragment StoreEntitySet="Intersection">
+                <ScalarProperty Name="position" ColumnName="position" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="primary_street" ColumnName="primary_street" />
                 <ScalarProperty Name="secondary_street" ColumnName="secondary_street" />
