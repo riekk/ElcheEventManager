@@ -170,10 +170,16 @@
     <Compile Include="Controllers\IntersectionsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MaterialsController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\StatusController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202405261535244_InitialCreate.cs" />
+    <Compile Include="Migrations\202405261535244_InitialCreate.Designer.cs">
+      <DependentUpon>202405261535244_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\db\Category.cs">
       <DependentUpon>ModelElcheEM.tt</DependentUpon>
@@ -362,6 +368,10 @@
     <Content Include="Views\Intersections\_Edit.cshtml" />
     <Content Include="Views\Intersections\IntersectionsMap.cshtml" />
     <Content Include="Views\Intersections\FencesList.cshtml" />
+    <Content Include="Views\Roles\Index.cshtml" />
+    <Content Include="Views\Roles\Create.cshtml" />
+    <Content Include="Views\Roles\UserList.cshtml" />
+    <Content Include="Views\Roles\EditRole.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -371,6 +381,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202405261535244_InitialCreate.resx">
+      <DependentUpon>202405261535244_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

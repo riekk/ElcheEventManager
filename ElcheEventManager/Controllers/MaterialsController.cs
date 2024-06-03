@@ -10,6 +10,7 @@ using ElcheEventManager.Models.db;
 
 namespace ElcheEventManager.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class MaterialsController : Controller
     {
         private EntitiesEM db = new EntitiesEM();

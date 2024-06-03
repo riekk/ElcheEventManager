@@ -11,8 +11,7 @@ namespace ElcheEventManager.Models.db
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Event
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,28 +21,16 @@ namespace ElcheEventManager.Models.db
         }
     
         public int id { get; set; }
-        [Display(Name = "Nombre")]
-        [Required(ErrorMessage = "Debe introducir el nombre del evento.")]
         public string name { get; set; }
-        [Display(Name = "Descripción")]
-        [DataType(DataType.MultilineText)]
         public string description { get; set; }
-        [Display(Name = "Fecha de inicio")]
-        [Required(ErrorMessage = "Debe introducir una fecha.")]
         public System.DateTime start_date { get; set; }
-        [Display(Name = "Fecha de fin")]
         public Nullable<System.DateTime> end_date { get; set; }
-        [Display(Name = "Nombre del responsable")]
         public string manager_name { get; set; }
-        [Display(Name = "Telefono del responsable")]
         public string manager_phone { get; set; }
-        [Display(Name = "Email del responsable")]
         public string manager_email { get; set; }
-        [Display(Name = "Estado")]
         public int status_id { get; set; }
-        [Display(Name = "Categoría")]
         public int category_id { get; set; }
-
+    
         public virtual Category Category { get; set; }
         public virtual Status Status { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

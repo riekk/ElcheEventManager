@@ -1,0 +1,23 @@
+﻿@model IEnumerable<dynamic>
+
+@{
+    ViewBag.Title = "Usuarios";
+}
+
+<h2>Usuarios</h2>
+
+<table class="table">
+    <tr>
+        <th>Nombre de Usuario</th>
+        <th>Correo Electrónico</th>
+        <th>Roles</th>
+    </tr>
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@user.UserName</td>
+            <td>@user.Email</td>
+            <td>@string.Join(", ", user.Roles)</td>
+        </tr>
+    }
+</table>

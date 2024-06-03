@@ -10,7 +10,7 @@ using ElcheEventManager.Models.db;
 
 namespace ElcheEventManager.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class CategoriesController : Controller
     {
         private EntitiesEM db = new EntitiesEM();

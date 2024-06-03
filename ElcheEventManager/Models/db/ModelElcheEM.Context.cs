@@ -30,5 +30,7 @@ namespace ElcheEventManager.Models.db
         public virtual DbSet<Intersection> Intersections { get; set; }
         public virtual DbSet<Material> Materials { get; set; }
         public virtual DbSet<Status> Status { get; set; }
+        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
     }
 }

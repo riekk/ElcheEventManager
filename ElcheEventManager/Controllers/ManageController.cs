@@ -55,12 +55,12 @@ namespace ElcheEventManager.Controllers
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
-                : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
-                : message == ManageMessageId.Error ? "An error has occurred."
-                : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
-                : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
+                message == ManageMessageId.ChangePasswordSuccess ? "Contraseña cambiada correctamente."
+                : message == ManageMessageId.SetPasswordSuccess ? "Contraseña establecida."
+                : message == ManageMessageId.SetTwoFactorSuccess ? "Proveedor de autentificación de dos factores establecido."
+                : message == ManageMessageId.Error ? "Ha ocurrido un error"
+                : message == ManageMessageId.AddPhoneSuccess ? "Número de teléfono añadido."
+                : message == ManageMessageId.RemovePhoneSuccess ? "Número de teléfono eliminado."
                 : "";
 
             var userId = User.Identity.GetUserId();
@@ -123,7 +123,7 @@ namespace ElcheEventManager.Controllers
                 var message = new IdentityMessage
                 {
                     Destination = model.Number,
-                    Body = "Your security code is: " + code
+                    Body = "Tú código de seguridad es: " + code
                 };
                 await UserManager.SmsService.SendAsync(message);
             }
@@ -190,7 +190,7 @@ namespace ElcheEventManager.Controllers
                 return RedirectToAction("Index", new { Message = ManageMessageId.AddPhoneSuccess });
             }
             // If we got this far, something failed, redisplay form
-            ModelState.AddModelError("", "Failed to verify phone");
+            ModelState.AddModelError("", "Fallo al verificar el teléfono");
             return View(model);
         }
 
@@ -281,8 +281,8 @@ namespace ElcheEventManager.Controllers
         public async Task<ActionResult> ManageLogins(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
-                : message == ManageMessageId.Error ? "An error has occurred."
+                message == ManageMessageId.RemoveLoginSuccess ? "Inicio de sesisión externo eliminado."
+                : message == ManageMessageId.Error ? "Ha ocurrido un error."
                 : "";
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
             if (user == null)

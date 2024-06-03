@@ -1,0 +1,24 @@
+﻿@using ElcheEventManager.Models
+
+@model ApplicationUser
+
+@{
+    ViewBag.Title = "Editar Rol";
+}
+
+<h2>Editar Rol de @Model.UserName</h2>
+
+@using (Html.BeginForm("EditRole", "Users", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.Label("Seleccionar Rol:")
+        @Html.DropDownList("roleName", (IEnumerable<SelectListItem>)ViewBag.Roles, "-- Seleccionar Rol --", new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Guardar" class="btn btn-primary" />
+        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-default" })
+    </div>
+}
