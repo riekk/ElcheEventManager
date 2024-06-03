@@ -1,4 +1,4 @@
-﻿@model IEnumerable<dynamic>
+﻿@model IEnumerable<ElcheEventManager.Models.dto.UserWithRoles>
 
 @{
     ViewBag.Title = "Usuarios";
@@ -9,15 +9,19 @@
 <table class="table">
     <tr>
         <th>Nombre de Usuario</th>
-        <th>Correo Electrónico</th>
+        @*<th>Correo Electrónico</th>*@
         <th>Roles</th>
+        <th>Acciones</th>
     </tr>
     @foreach (var user in Model)
     {
         <tr>
             <td>@user.UserName</td>
-            <td>@user.Email</td>
+            @*<td>@user.Email</td>*@
             <td>@string.Join(", ", user.Roles)</td>
+            <td>
+                <a href="@Url.Action("EditRole", "Roles", new { userId = user.UserId })" class="btn btn-outline-primary">Editar Rol</a>
+            </td>
         </tr>
     }
 </table>

@@ -34,13 +34,19 @@
                         <li class="nav-item">
                             @Html.ActionLink("Materiales", "Index", "Materials", new { area = "" }, new { @class = "nav-link" })
                         </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Roles", "Index", "Roles", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Usuarios", "UserList", "Roles", new { area = "" }, new { @class = "nav-link" })
+                        </li>
                     }
                     <li class="nav-item">
                         @Html.ActionLink("Acerca de", "About", "Home", new { area = "" }, new { @class = "nav-link" })
                     </li>
-                    <li class="nav-item">
+                    @*<li class="nav-item">
                         @Html.ActionLink("Contacto", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })
-                    </li>
+                    </li>*@
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

@@ -181,6 +181,12 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\db\AspNetRole.cs">
+      <DependentUpon>ModelElcheEM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\db\AspNetUser.cs">
+      <DependentUpon>ModelElcheEM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\db\Category.cs">
       <DependentUpon>ModelElcheEM.tt</DependentUpon>
     </Compile>
@@ -211,6 +217,7 @@
     <Compile Include="Models\db\Status.cs">
       <DependentUpon>ModelElcheEM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\dto\Class1.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

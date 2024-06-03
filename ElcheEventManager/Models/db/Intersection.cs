@@ -11,12 +11,17 @@ namespace ElcheEventManager.Models.db
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Intersection
     {
         public int id { get; set; }
+        [Display(Name = "Calle principal")]
         public string primary_street { get; set; }
+        [Display(Name = "Calle secundaria")]
         public string secondary_street { get; set; }
+        [Display(Name = "Cantidad")]
+        [Range(0, int.MaxValue, ErrorMessage = "La cantidad debe ser un número no negativo")]
         public int quantity { get; set; }
         public string latitude { get; set; }
         public string longitude { get; set; }

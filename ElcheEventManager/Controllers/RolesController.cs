@@ -1,4 +1,6 @@
 ﻿using ElcheEventManager.Models;
+using ElcheEventManager.Models.db;
+using ElcheEventManager.Models.dto;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
@@ -14,6 +16,7 @@ namespace ElcheEventManager.Controllers
     public class RolesController : Controller
     {
         private ApplicationDbContext context = new ApplicationDbContext();
+        private EntitiesEM db = new EntitiesEM();
 
         public ActionResult Index()
         {
@@ -54,10 +57,10 @@ namespace ElcheEventManager.Controllers
         {
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
             // Obtener todos los usuarios
-            var users = context.AspNetUsers.ToList();
+            var users = db.AspNetUsers.Where(u => u.Email != "admin@elche.es").ToList();
 
             // Obtener los roles de cada usuario
-            var usersWithRoles = users.Select(user => new
+            var usersWithRoles = users.Select(user => new UserWithRoles
             {
                 UserId = user.Id,
                 UserName = user.UserName,
@@ -102,6 +105,7 @@ namespace ElcheEventManager.Controllers
             }
 
             ViewBag.Roles = roles;
+            ViewBag.userId = userId;
 
             return View(user);
         }
@@ -128,10 +132,12 @@ namespace ElcheEventManager.Controllers
                 // Agregar el nuevo rol al usuario
                 userManager.AddToRole(user.Id, roleName);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("UserList");
             }
 
             return View();
         }
     }
+
+    
 }
