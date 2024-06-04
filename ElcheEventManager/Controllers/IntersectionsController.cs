@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.WebPages;
 using ElcheEventManager.Models.db;
+using ElcheEventManager.Models.util;
 
 namespace ElcheEventManager.Controllers
 {
@@ -220,8 +221,3 @@ namespace ElcheEventManager.Controllers
     }
 }
 
-public class RowData
-{
-    public int Id { get; set; }
-    public int NewOrder { get; set; }
-}

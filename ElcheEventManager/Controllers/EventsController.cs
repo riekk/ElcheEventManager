@@ -10,6 +10,7 @@ using ElcheEventManager.Models.db;
 
 namespace ElcheEventManager.Controllers
 {
+    [Authorize]
     public class EventsController : Controller
     {
         private EntitiesEM db = new EntitiesEM();

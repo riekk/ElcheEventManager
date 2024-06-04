@@ -10,12 +10,12 @@
 
 <h2>Listado de eventos</h2>
 <p>
-    @Html.ActionLink("Nuevo evento", "Create", null, new { @class = "btn btn-success" })
+    @Html.ActionLink("Nuevo evento", "Create", null, new { @class = "btn btn-outline-success" })
 </p>
 
 <div class="container">
     <div class="row">
-        <div class="col-12">
+        @*<div class="col-12">*@
             <div class="table-responsive">
                 <table id="eventsTable" class="table table-bordered table-striped">
                     <thead>
@@ -29,7 +29,7 @@
                     </thead>
                 </table>
             </div>
-        </div>
+        @*</div>*@
     </div>
 </div>
 
@@ -70,7 +70,7 @@
                                     <i class="far fa-pen-to-square"></i>
                                     <span class="d-none d-sm-inline">Editar</span>
                                 </a>
-                                <a href='@Url.Action("Details", "Events")/${data}' class='btn btn-outline-info'>
+                                <a href='@Url.Action("Details", "Events")/${data}' class='btn btn-outline-dark'>
                                     <i class="fa-solid fa-circle-info"></i>
                                     <span class="d-none d-sm-inline">Detalles</span>
                                 </a>

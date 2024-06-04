@@ -25,6 +25,7 @@ namespace ElcheEventManager.Models.db
         public int quantity { get; set; }
         public string latitude { get; set; }
         public string longitude { get; set; }
+        [Display(Name = "Material")]
         public int material_id { get; set; }
         public int event_id { get; set; }
         public Nullable<int> position { get; set; }

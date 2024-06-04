@@ -217,9 +217,10 @@
     <Compile Include="Models\db\Status.cs">
       <DependentUpon>ModelElcheEM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\dto\Class1.cs" />
+    <Compile Include="Models\dto\UserWithRoles.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\util\RowData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

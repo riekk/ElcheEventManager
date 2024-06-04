@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<ElcheEventManager.Models.db.Category>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Lista categorías";
 }
 
-<h2>Index</h2>
+<h2>Lista de categorias</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Nueva categoría", "Create", null, new { @class = "btn btn-outline-success" })
 </p>
 <table class="table">
     <tr>
@@ -23,9 +23,9 @@
             @Html.DisplayFor(modelItem => item.name)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            @Html.ActionLink("Editar", "Edit", new { id=item.id }, new { @class = "btn btn-outline-primary" } ) 
+            @*@Html.ActionLink("Details", "Details", new { id=item.id }) |*@
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.id }, new { @class = "btn btn-outline-danger" } )
         </td>
     </tr>
 }
