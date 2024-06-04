@@ -261,7 +261,7 @@ function deleteIntersection(item) {
                 if (response.ok) {
                     // Redirect to the Index page after successful deletion
                     if (!map.hasLayer(marker)) {
-                        console.log("NO llego encuentro el marker")
+                        console.log("No encuentro el marker")
                     }
                     console.log(marker);
                     map.removeLayer(marker);
@@ -323,7 +323,6 @@ function createPopupContent(item) {
     popupContent.appendChild(secondaryStreetLabel);
     popupContent.appendChild(document.createElement("br"));
 
-    // Crear etiqueta y texto para quantity
     var quantityLabel = document.createElement("label");
     quantityLabel.textContent = "Cantidad: " + item.quantity;
     quantityLabel.style.marginBottom = "1rem"; 
@@ -351,3 +350,35 @@ function createPopupContent(item) {
 
     return popupContent;
 }
+
+var customControl = L.Control.extend({
+    options: {
+        position: 'topright' 
+    },
+
+    onAdd: function (map) {
+        var container = L.DomUtil.create('div', 'custom-control');
+
+        var button1 = L.DomUtil.create('button', '', container);
+        button1.innerHTML = 'Eventos';
+        button1.style.margin = '0.5rem';
+        button1.onclick = function () {
+            window.location.href = '/Events'; 
+        };
+
+        var button2 = L.DomUtil.create('button', '', container);
+        button2.innerHTML = 'Listado';
+        button2.style.margin = '0.5rem';
+        button2.onclick = function () {
+            window.location.href = `/Intersections/FencesList/${eventId}`; 
+        };
+
+        // Avoid click in map
+        L.DomEvent.disableClickPropagation(container);
+
+        return container;
+    }
+});
+
+// Añadir el control personalizado al mapa
+map.addControl(new customControl());

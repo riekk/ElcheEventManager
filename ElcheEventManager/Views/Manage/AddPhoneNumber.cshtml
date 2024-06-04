@@ -1,6 +1,6 @@
 ﻿@model ElcheEventManager.Models.AddPhoneNumberViewModel
 @{
-    ViewBag.Title = "Phone Number";
+    ViewBag.Title = "Número de teléfono";
 }
 <main aria-labelledby="title">
     <h2 id="title">@ViewBag.Title.</h2>
@@ -11,15 +11,15 @@
         <h4>Add a phone number</h4>
         <hr />
         @Html.ValidationSummary("", new { @class = "text-danger" })
-        <div class="row">
+        <div class="row mt-2">
             @Html.LabelFor(m => m.Number, new { @class = "col-md-2 col-form-label" })
             <div class="col-md-10">
                 @Html.TextBoxFor(m => m.Number, new { @class = "form-control" })
             </div>
         </div>
-        <div class="row">
+        <div class="row mt-3">
             <div class="offset-md-2 col-md-10">
-                <input type="submit" class="btn btn-outline-dark" value="Submit" />
+                <input type="submit" class="btn btn-outline-dark" value="Enviar" />
             </div>
         </div>
     }

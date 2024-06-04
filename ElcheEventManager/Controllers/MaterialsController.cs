@@ -22,19 +22,19 @@ namespace ElcheEventManager.Controllers
         }
 
         // GET: Materials/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Material material = db.Materials.Find(id);
-            if (material == null)
-            {
-                return HttpNotFound();
-            }
-            return View(material);
-        }
+        //public ActionResult Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Material material = db.Materials.Find(id);
+        //    if (material == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(material);
+        //}
 
         // GET: Materials/Create
         public ActionResult Create()

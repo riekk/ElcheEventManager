@@ -47,3 +47,25 @@ html, body {
     top: 0;
     left: 0;
 }
+
+.custom-control {
+    background: white;
+    padding: 0rem;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.custom-control button {
+    display: block;
+    width: 80%;
+    padding: 0.5rem;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+}
+
+.custom-control button:hover {
+    background: #0056b3;
+}

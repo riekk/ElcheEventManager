@@ -347,10 +347,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Intersections\Create.cshtml" />
-    <Content Include="Views\Intersections\Delete.cshtml" />
-    <Content Include="Views\Intersections\Details.cshtml" />
-    <Content Include="Views\Intersections\Edit.cshtml" />
     <Content Include="Views\Intersections\Index.cshtml" />
     <Content Include="Views\Events\Create.cshtml" />
     <Content Include="Views\Events\Delete.cshtml" />

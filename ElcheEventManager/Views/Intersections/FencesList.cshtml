@@ -1,4 +1,8 @@
-﻿<head>
+﻿@{
+    ViewBag.Title = "Listado de material";
+}
+
+<head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <!-- DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
@@ -7,10 +11,6 @@
 </head>
 
 <h2>Listado de vallas</h2>
-
-@{
-    
-}
 
 <div class="container">
     <div class="row">
@@ -29,6 +29,12 @@
         </div>
     </div>
 </div>
+
+<div>
+    @Html.ActionLink("Lista de eventos", "Index", "Events", null, new { @class = "btn btn-outline-dark mt-4" })
+    @Html.ActionLink("Mapa", "IntersectionsMap", "Intersections", new { id = @ViewBag.eventId }, new { @class = "btn btn-outline-dark mt-4" })
+</div>
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 
@@ -46,7 +52,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 
 
-<script>
+    <script>
         var eventId = '@ViewBag.eventId';
         console.log(eventId);
 
@@ -139,6 +145,6 @@
         });
 
 
-</script>
+    </script>
 
 }

@@ -56,10 +56,9 @@ namespace ElcheEventManager.Controllers
         public ActionResult UserList()
         {
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-            // Obtener todos los usuarios
+            
             var users = db.AspNetUsers.Where(u => u.Email != "admin@elche.es").ToList();
 
-            // Obtener los roles de cada usuario
             var usersWithRoles = users.Select(user => new UserWithRoles
             {
                 UserId = user.Id,
@@ -80,22 +79,18 @@ namespace ElcheEventManager.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            // Buscar al usuario por su Id
             ApplicationUser user = context.Users.Find(userId);
             if (user == null)
             {
                 return HttpNotFound();
             }
 
-            // Obtener los roles disponibles
             var roles = context.Roles.OrderBy(r => r.Name).ToList().Select(rr =>
                 new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
 
-            // Obtener el rol actual del usuario
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
             var userRoles = userManager.GetRoles(user.Id);
 
-            // Marcar el rol actual del usuario como seleccionado
             foreach (var role in roles)
             {
                 if (userRoles.Contains(role.Value))
@@ -117,7 +112,6 @@ namespace ElcheEventManager.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Encontrar al usuario por su Id
                 var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
                 var user = userManager.FindById(userId);
                 if (user == null)
@@ -125,11 +119,9 @@ namespace ElcheEventManager.Controllers
                     return HttpNotFound();
                 }
 
-                // Eliminar todos los roles existentes del usuario
                 var currentRoles = userManager.GetRoles(user.Id);
                 userManager.RemoveFromRoles(user.Id, currentRoles.ToArray());
 
-                // Agregar el nuevo rol al usuario
                 userManager.AddToRole(user.Id, roleName);
 
                 return RedirectToAction("UserList");
