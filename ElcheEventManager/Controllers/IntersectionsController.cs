@@ -24,19 +24,19 @@ namespace ElcheEventManager.Controllers
         }
 
         // GET: Intersections/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Intersection intersection = db.Intersections.Find(id);
-            if (intersection == null)
-            {
-                return HttpNotFound();
-            }
-            return View(intersection);
-        }
+        //public ActionResult Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Intersection intersection = db.Intersections.Find(id);
+        //    if (intersection == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(intersection);
+        //}
 
         // GET: Intersections/Create
         public ActionResult Create()

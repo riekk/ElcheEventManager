@@ -8,6 +8,16 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
     <!-- DataTables Buttons CSS -->
     @*<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css">*@
+
+    <style>
+        .dataTables_wrapper .dt-buttons {
+            margin-bottom: 1rem; /* Ajusta el valor según lo que desees */
+        }
+
+        .table-container {
+            margin: 20px; /* Ajusta el valor según lo que desees */
+        }
+    </style>
 </head>
 
 <h2>Listado de vallas</h2>
@@ -54,7 +64,7 @@
 
     <script>
         var eventId = '@ViewBag.eventId';
-        console.log(eventId);
+        //console.log(eventId);
 
         $(document).ready(function () {
             var table = $('#fencesTable').DataTable({
@@ -70,7 +80,33 @@
                     { data: 'quantity', orderable: true }
                 ],
                 order: [[1, 'asc']],
-                dom: 'Bfrtip',
+                pageLength: 10,
+                lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+                dom: 'Blfrtlip',
+                language: {
+                    "sProcessing": "Procesando...",
+                    "sLengthMenu": "Mostrar _MENU_ registros",
+                    "sZeroRecords": "No se encontraron resultados",
+                    "sEmptyTable": "Ningún dato disponible en esta tabla",
+                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Buscar:",
+                    "sUrl": "",
+                    "sInfoThousands": ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Último",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    }
+                },
                 buttons: [
                     {
                         extend: 'excelHtml5',
@@ -97,7 +133,7 @@
                         extend: 'print',
                         text: '<i class="fas fa-print"></i>',
                         titleAttr: 'Imprimir',
-                        className: 'btn btn-outline-info',
+                        className: 'btn btn-outline-dark',
                         title: '@ViewBag.Title',
                         exportOptions: {
                             columns: [1, 2, 3, 4]

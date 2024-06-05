@@ -22,19 +22,19 @@ namespace ElcheEventManager.Controllers
         }
 
         // GET: Status/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Status status = db.Status.Find(id);
-            if (status == null)
-            {
-                return HttpNotFound();
-            }
-            return View(status);
-        }
+        //public ActionResult Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Status status = db.Status.Find(id);
+        //    if (status == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(status);
+        //}
 
         // GET: Status/Create
         public ActionResult Create()

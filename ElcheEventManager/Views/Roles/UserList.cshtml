@@ -20,7 +20,7 @@
             @*<td>@user.Email</td>*@
             <td>@string.Join(", ", user.Roles)</td>
             <td>
-                <a href="@Url.Action("EditRole", "Roles", new { userId = user.UserId })" class="btn btn-outline-primary">Editar Rol</a>
+                <a href="@Url.Action("EditRole", "Roles", new { userId = user.UserId })" class="btn btn-outline-dark">Editar Rol</a>
             </td>
         </tr>
     }

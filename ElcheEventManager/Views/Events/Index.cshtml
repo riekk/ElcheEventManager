@@ -66,7 +66,7 @@
                         "data": "id",
                         "render": function (data, type, row) {
                             return `
-                                <a href='@Url.Action("Edit", "Events")/${data}' class='btn btn-outline-primary'>
+                                <a href='@Url.Action("Edit", "Events")/${data}' class='btn btn-outline-dark'>
                                     <i class="far fa-pen-to-square"></i>
                                     <span class="d-none d-sm-inline">Editar</span>
                                 </a>
@@ -78,11 +78,11 @@
                                     <i class="fa-solid fa-trash"></i>
                                     <span class="d-none d-sm-inline">Eliminar</span>
                                 </a>
-                                <a href='@Url.Action("IntersectionsMap", "Intersections")/${data}' class='btn btn-outline-success'>
+                                <a href='@Url.Action("IntersectionsMap", "Intersections")/${data}' class='btn btn-outline-dark'>
                                     <i class="fa-regular fa-map"></i>
                                     <span class="d-none d-sm-inline">Mapa</span>
                                 </a>
-                                <a href='@Url.Action("FencesList", "Intersections")/${data}' class='btn btn-outline-secondary'>
+                                <a href='@Url.Action("FencesList", "Intersections")/${data}' class='btn btn-outline-dark'>
                                     <i class="fa-solid fa-list"></i>
                                     <span class="d-none d-sm-inline">Lista de vallas</span>
                                 </a>
@@ -93,7 +93,31 @@
                 "columnDefs": [
                     { "type": "date-eu", "targets": 1 } // Tratar la columna 1 (start_date) como una fecha con el formato 'DD/MM/YYYY'
                 ],
-                "order": [[1, "desc"]]
+                "order": [[1, "desc"]],
+                language: {
+                    "sProcessing": "Procesando...",
+                    "sLengthMenu": "Mostrar _MENU_ registros",
+                    "sZeroRecords": "No se encontraron resultados",
+                    "sEmptyTable": "Ningún dato disponible en esta tabla",
+                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Buscar:",
+                    "sUrl": "",
+                    "sInfoThousands": ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Último",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    }
+                },
             });
 
         });
