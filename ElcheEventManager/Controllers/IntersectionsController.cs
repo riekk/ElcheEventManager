@@ -12,6 +12,7 @@ using ElcheEventManager.Models.util;
 
 namespace ElcheEventManager.Controllers
 {
+    [Authorize]
     public class IntersectionsController : Controller
     {
         private EntitiesEM db = new EntitiesEM();
