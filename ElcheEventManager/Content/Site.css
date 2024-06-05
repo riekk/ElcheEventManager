@@ -1,8 +1,8 @@
 ﻿/* Set padding to keep content from hitting the edges */
 .body-content {
-    margin-top: 15px;
-    padding-left: 15px;
-    padding-right: 15px;
+    margin-top: 0.75rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -16,7 +16,7 @@
 input,
 select,
 textarea {
-    max-width: 320px;
+    max-width: 30rem;
 }
 
 .modal-body-centered {
@@ -51,8 +51,8 @@ html, body {
 .custom-control {
     background: white;
     padding: 0rem;
-    border-radius: 5px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 0.3rem;
+    box-shadow: 0 0 1rem rgba(0,0,0,0.2);
 }
 
 .custom-control button {
@@ -68,4 +68,69 @@ html, body {
 
 .custom-control button:hover {
     background: #0056b3;
+}
+
+.about-page {
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border-radius: 0.3rem;
+    box-shadow: 0 0 0.75rem rgba(0,0,0,0.1);
+}
+
+.about-page h4 {
+    margin-top: 1.5rem;
+    color: #333;
+}
+
+.about-page ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+}
+
+.author-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.author-info > div {
+    flex: 1;
+    min-width: 200px;
+}
+
+.app-logo {
+    /*max-width: 30rem;*/
+    max-width: 100%;
+    height: auto;
+    margin-left: 3rem;
+}
+
+@media (max-width: 768px) {
+    .author-info {
+        flex-direction: column;
+        align-items: center;
+        text-align: center; /* Centra el texto en móviles */
+    }
+
+    .author-info > div {
+        margin-bottom: 1rem; /* Añade margen inferior para separarlo de la imagen */
+    }
+
+    .app-logo {
+        margin-left: 0;
+        margin-top: 1rem;
+        width: 80%; /* Ajusta la imagen para que no exceda el ancho del contenedor en móviles */
+    }
+}
+
+.italic-text {
+    font-style: italic;
+}
+
+.banner-image {
+    width: 45%;
+    height: auto;
+    display: block;
 }

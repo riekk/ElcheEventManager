@@ -1,9 +1,48 @@
 ﻿@{
-    ViewBag.Title = "Acerca de";
+    ViewBag.Title = "Gestor de Eventos de Elche";
 }
 <main aria-labelledby="title">
-    <h2 id="title">@ViewBag.Title.</h2>
-    <h3>@ViewBag.Message</h3>
+    <h2 id="title">@ViewBag.Title</h2>
+    <h3 class="italic-text">@ViewBag.Message</h3>
 
-    <p>Use this area to provide additional information.</p>
+    <p>Version: 1.0</p>
+
+    <div class="about-page">
+        <h4>Acerca de este proyecto</h4>
+        <p>
+            Este proyecto es una aplicación ASP.NET MVC que demuestra el uso de la librería Leaflet para mostrar mapas interactivos con los cuales gestionar los cortes de calles de la ciudad de Elche.
+            Puede navegar a diferentes secciones del proyecto utilizando los botones proporcionados en la interfaz de toda la aplicación.
+            Para asi poder gestionar en su totalidad los eventos de la ciudad.
+        </p>
+
+        <h4>Caracteristicas</h4>
+        <ul>
+            <li>Mapas interactivos con Leaflet</li>
+            <li>Operaciones CRUD para el manejo de las tablas</li>
+            <li>Integración AJAX para cargas dinámicas de datos</li>
+            <li>Diseño responsive para una mejor experiencia del usuario</li>
+        </ul>
+
+        <h4>Tecnologias Utilizadas</h4>
+        <ul>
+            <li>ASP.NET MVC 5</li>
+            <li>Leaflet.js</li>
+            <li>Esri</li>
+            <li>jQuery</li>
+            <li>Bootstrap</li>
+        </ul>
+        <div class="author-info">
+            <div>
+                <h4>Autor</h4>
+                <p>Christian Torrecillas Martínez</p>
+
+                <h4>Curso</h4>
+                <p>IES Severo Ochoa - Desarrollo de Aplicaciones Multiplataforma 2022/2024</p>
+
+                @*<h4>Company</h4>
+                <p>Via Adamo Technologies</p>*@                
+            </div>
+            <img src="~/Content/Images/app-logo-trans.png" alt="App Logo" class="app-logo" />
+        </div>
+    </div>
 </main>

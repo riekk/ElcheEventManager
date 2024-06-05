@@ -15,7 +15,7 @@ namespace ElcheEventManager.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Making your life easier.";
 
             return View();
         }
