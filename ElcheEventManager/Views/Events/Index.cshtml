@@ -45,6 +45,8 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
+            $.fn.dataTable.moment('DD/MM/YYYY HH:mm');
+
             $('#eventsTable').DataTable({
                 "ajax": {
                     "url": '@Url.Action("GetEvents")',
@@ -54,10 +56,9 @@
                 "columns": [
                     { "data": "name" },
                     {
-                        "data": "start_date",
-                        type: "datetime",
+                        "data": "start_date",                        
                         "render": function (data) {
-                            return moment(data, 'MM/DD/YYYY HH:mm').format('DD/MM/YYYY HH:mm');
+                            return moment(data).format('DD/MM/YYYY HH:mm');
                         }
                     },
                     { "data": "status_name" },
@@ -89,9 +90,6 @@
                             `;
                         }
                     }
-                ],
-                "columnDefs": [
-                    { "type": "date-eu", "targets": 1 } // Tratar la columna 1 (start_date) como una fecha con el formato 'DD/MM/YYYY'
                 ],
                 "order": [[1, "desc"]],
                 language: {
